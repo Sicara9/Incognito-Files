@@ -14,4 +14,4 @@
 06/05/2020  06:32 PM                 0 test.txt
 05/08/2020  04:40 PM         3,765,839 zombie2.gif
                7 File(s)    369,340,129 bytes
-               3 Dir(s)  22,825,091,072 bytes free
+               3 Dir(s)  23,079,190,528 bytes free
