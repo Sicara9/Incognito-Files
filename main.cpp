@@ -5,7 +5,7 @@
 #include <string>
 
 //#include "database.cpp"
-#include "directory.cpp"
+#include "setup.cpp"
 using namespace std;
 
 int main() {
