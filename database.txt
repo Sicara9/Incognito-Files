@@ -1,0 +1,17 @@
+ Volume in drive C is OS
+ Volume Serial Number is B8D5-ABD9
+
+ Directory of C:\Users\brian\OneDrive\Documents\GitHub\Hackathon-2020\test
+
+06/05/2020  09:48 PM    <DIR>          .
+06/05/2020  09:48 PM    <DIR>          ..
+12/07/2019  08:38 AM       364,296,328 391.35-notebook-win10-32bit-international-whql.exe
+04/19/2016  09:56 PM           209,426 axle - Copy.jpg
+06/11/2019  08:19 PM           706,112 explorer_2019-06-11_20-10-14.png
+03/11/2020  06:07 PM            27,218 PA2-1.docx
+02/22/2015  10:28 PM           335,206 PENGUIN.gif
+06/05/2020  06:25 PM    <DIR>          test
+06/05/2020  06:32 PM                 0 test.txt
+05/08/2020  04:40 PM         3,765,839 zombie2.gif
+               7 File(s)    369,340,129 bytes
+               3 Dir(s)  22,825,091,072 bytes free
