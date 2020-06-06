@@ -12,12 +12,13 @@ int main() {
 
 //  int looper = 1;
   ofstream fOut;
-  ifstream dir;
+  ifstream fin;
   string iDir;
   string tempDir;
+  vector<string> fileT;
 
-  parseDirectory(dir, fOut, tempDir, iDir);
-  
+  parseDirectory(fin, fOut, tempDir, iDir);
+  addFileType(fin, fOut, fileT);
 
   return 0;
 }

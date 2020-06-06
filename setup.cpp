@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
+
 #include "setup.h"
 
 using namespace std;
@@ -34,7 +35,8 @@ void parseDirectory (ifstream &fin_D, ofstream &fileOut, string &tempDirectory, 
     }
   }
   else {
-    cout << "Directory.txt could not be opened. ";
+    fin_D.close();
+    createDirectory (fileOut, input_directory);
   }
 }
 
@@ -71,6 +73,14 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
     fin_FT.close();
   }
 
+  fOut_FT.open("FileTypes.txt");
+
+  if (fileTypes.size() > 0) {
+    for (auto i = fileTypes.begin(); i > fileTypes.end(); i++) {
+
+    }
+  }
+
   cout << "Enter in the file types you want to look out for." << endl
   << "- Type 'all' to look for all file types." << endl
   << "- Type 'clear' to remove all file types you are currently looking for. " << endl
@@ -79,13 +89,12 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   cin >> tempFileType;
 
-  fOut_FT.open("FileTypes.txt");
-
   while (tempFileType != "*") {
     fileTypes.push_back(tempFileType);
-    fOut_FT << tempFileType;
+    fOut_FT << tempFileType << "\n";
     cin >> tempFileType;
   }
+  fOut_FT << tempFileType;
 
   fOut_FT.close();
 }

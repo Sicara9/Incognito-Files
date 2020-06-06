@@ -6,3 +6,7 @@
 #include "database.h"
 
 using namespace std;
+
+void dataParser (vector<string> &fileTypes) {
+
+}
