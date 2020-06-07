@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <fstream>
 
 using namespace std;
 
-int main()
+void fileManager(string &tempDirectory, map<string, int> &files, vector<string> &fileTypes)
 {
 
     // declare variables
@@ -22,17 +23,27 @@ int main()
     file.open ("TaskList.txt"); // NAME CAN CHANGE
     file.close ();
     
-    // system(("tasklist > " + directory variable + "\\TaskList.txt").c_str());
+    system("tasklist > TaskList.txt");
 
-    system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt"); //*****EDIT THIS W/ Directory Location*****
+    //system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt");
 
-    fstream files;
+    fstream file_S;
     string word;
     string filename;
     string type[10];
     type[0] = "Nothing"; // PLACE HOLDER
     filename = "TaskList.txt";
-    
+    ofstream file;
+    int i = 0;
+    file.open("Recent.txt");
+    file.close();
+    string name;
+    vector<string> final;
+    ifstream fin;
+    string check;
+    string deleteFileName;
+    string mimic;
+    string pathName;
     
     while (!exit)
     {
@@ -40,16 +51,78 @@ int main()
         type[0] = "Nothing";
         while (type[0] == "Nothing")
         {
-            system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt"); //*****EDIT THIS ******
-            files.open(filename);
+            //system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt"); //*****EDIT THIS ******
+            system("tasklist > TaskList.txt");
+            file_S.open(filename);
 
-            while (files >> word)
+            while (file_S >> word)
             {
                 //This will search for the program to open
                 if (word == "WINWORD.EXE" || word == "POWERPNT.EXE" || word == "AcroRd32.exe")
                 {
-                    files >> word;
-                    type[i] = word; // Save PID
+
+                    system ("dir /o-d %userprofile%\\AppData\\Roaming\\Microsoft\\Windows\\Recent > Recent.txt");
+                    fin.open("Recent.txt");
+
+                    while (fin >> mimic)
+                    {
+                        if (mimic == "of")
+                        {
+                            getline(fin, pathName);
+                            pathName = pathName.replace(pathName.begin(), pathName.begin()+1, "");
+                            break;
+                        }
+
+                    }
+                    fin.close();
+
+                    fin.open ("Recent.txt");
+
+                    while (name.find(pathName) == string::npos) 
+                    {
+                        getline(fin, name);
+                    }
+
+                    while (j < 7) 
+                    {
+                        fin >> name;
+                        fin >> name;
+                        fin >> name;
+                        if ((name == "AM") || (name == "PM")) 
+                        {
+                            fin >> name;
+                            if (name != "<DIR>") 
+                            {
+                                map<string, int>::iterator i;
+                                for (i = files.begin(); i != files.end(); i++) 
+                                {
+                                    getline(fin, name);
+                                    name.replace(name.end()-4, name.end(), "");
+                                    check = name.replace(name.begin(), name.begin()+1, "");
+                                    if (i->first == check)
+                                    {
+                                        deleteFileName = i->first;
+                                        i->second = 1;
+                                        break;
+                                    }
+                                }
+                                final.push_back(name);
+                                j++;
+                            }
+                            else 
+                            {
+                                getline(fin, name);
+                            }
+                        }
+                        else 
+                        {
+                            break;
+                        }
+                    }
+                    fin.close();
+
+                    file_S >> word;
+                    type[0] = word; // Save PID
                     i++;
 
                 }
@@ -59,41 +132,47 @@ int main()
                 }
         
             }
-            files.close();
+            file_S.close();
         }
         // Reset i variable value
         i = 0;
 
         //Run vector list for name ***************************
 
-        cout << "Would you like to save or delete this file? (s/d) ";
-        cin >> save;
-        fileSkip = false;
-        if (save == 's' || save == 'S')
-        {
-            fileSkip = true;
-            // then change vector to saved **************
-        }
-        else
-        {
-            // Change the last digit in the vector name to delete **************
-            // label vector *******************
-        }
+
+
+        //fOut_DB << i->first << '\t' << i->second << '\n';
+        
+
+        // cout << "Would you like to save or delete this file? (s/d) ";
+        // cin >> save;
+        // fileSkip = false;
+        // if (save == 's' || save == 'S')
+        // {
+        //     fileSkip = true;
+        //     // then change vector to saved **************
+        // }
+        // else
+        // {
+        //     // Change the last digit in the vector name to delete **************
+        //     // label vector *******************
+        // }
 
         // task manager PID close
-        if (!fileSkip)
-        {
+        //if (!fileSkip)
+        //{
             escape = false;
             while (escape == false)
             {
-                system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt"); // COULD CHANGE FIX
-                files.open(filename);
+                //system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt"); // COULD CHANGE FIX
+                system("tasklist > TaskList.txt");
+                file_S.open(filename);
                 escape = true;
-                while (files >> word)
+                while (file_S >> word)
                 {
 
                     //This will search to see if the program is still open
-                    if (word == type[i])
+                    if (word == type[0])
                     {
                         escape = false;
 
@@ -104,19 +183,20 @@ int main()
                     }
         
                 }
-                files.close();
+                file_S.close();
             }
 
             // delete file
 
+            system(("del /f" + deleteFileName).c_str());
             //system("del /f DELETE.txt"); INSERT THE DIRECTORY NAME AND FILE NAME HERE TO DELETE ****************
 
             
-        }
-        else
-        {
-            ;
-        }
+        //}
+        //else
+        //{
+           // ;
+       // }
 
         // prompt exit program
         cout << "Would you like to exit this program? (y/n) ";
@@ -135,6 +215,5 @@ int main()
 
     cout << "Thank you for using Incognito Files!";
 
-    return 0;
 
 }
