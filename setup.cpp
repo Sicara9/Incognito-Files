@@ -77,8 +77,11 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   if (fileTypes.size() > 0) {
     for (auto i = fileTypes.begin(); i > fileTypes.end(); i++) {
-
+      fOut_FT << *i << "\n";
     }
+  }
+  else {
+    ;
   }
 
   cout << "Enter in the file types you want to look out for." << endl
@@ -89,10 +92,42 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   cin >> tempFileType;
 
+  string fileSyn[] = {".docx", ".pdf", ".ppt", ".png", ".gif"}; // Actually insert all file types here....
+  int i = 0;
+  fileTypes.clear();
+
   while (tempFileType != "*") {
+    if (tempFileType == "all") {
+      fileTypes.clear();
+      fOut_FT.close();
+      fOut_FT.open("FileTypes.txt");
+      for (i = 0; fileSyn; i++) {
+        fOut_FT << fileSyn[i] << "\n";
+        fileTypes.push_back(fileSyn[i]);
+      }
+      cin >> tempFileType;
+    }
+    else if (tempFileType == "clear") {
+      fileTypes.clear();
+      fOut_FT.close();
+      fOut_FT.open("FileTypes.txt");
+      cin >> tempFileType;
+     }
+    else if (tempFileType == "filetypes") {
+      if (fileTypes.size() > 0) {
+        for (auto i = fileTypes.begin(); i > fileTypes.end(); i++) {
+        cout << *i << "\n";
+        }
+      }
+      else {
+        cout << "There are no file types currently selected.";
+      }
+    }
+    else {
     fileTypes.push_back(tempFileType);
     fOut_FT << tempFileType << "\n";
     cin >> tempFileType;
+    }
   }
   fOut_FT << tempFileType;
 
