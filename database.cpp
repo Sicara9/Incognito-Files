@@ -14,7 +14,6 @@ void databaseParser (ifstream &fin_DB, ofstream &fOut_DB, string &tempDirectory,
 
   while (parser.find(tempDirectory) == string::npos) {
     getline(fin_DB, parser);
-    cout << parser << endl;
   }
 
   while (parser != "0") {
@@ -49,9 +48,6 @@ void databaseParser (ifstream &fin_DB, ofstream &fOut_DB, string &tempDirectory,
   fOut_DB.close();
   fOut_DB.open("files.txt");
   map<string, int>::iterator i;
-  for (i = files.begin(); i != files.end(); i++) {
-    cout << i->first << '\t' << i->second << '\n';
-  }
   for (i = files.begin(); i != files.end(); i++) {
     fOut_DB << i->first << '\t' << i->second << '\n';
   }

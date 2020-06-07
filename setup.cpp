@@ -52,9 +52,8 @@ void createDirectory (ofstream &fOut_D, string &tempDirectory, string &input_dir
   fOut_D << "File: " << endl;
   cout << "Input a directory path that you would like your files to be monitored for deletion: ";
   getline(cin, input_directory);
-  tempDirectory = input_directory; 
+  tempDirectory = input_directory;
   fOut_D << input_directory;
-  cout << endl << input_directory << endl;
   fOut_D.close();
   fOut_D.open("database.txt");
   fOut_D.close();
