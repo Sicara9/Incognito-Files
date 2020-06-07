@@ -19,6 +19,6 @@ recognizes Microsoft Word, Microsoft Powerpoint, and Acrobat Reader DC applicati
 The program requires you to input a directory location which will be used to monitor files during the process.
 The file you wish to be deleted after usage will need to be located inside that file directory which will additionally 
 need to be found on your Windows installed drive (C: Drive). 
-*Note - There is a strange bug where the File.txt folder will wipe when the application is closed improperly. To fix this problem,
+*Note - There is a strange bug where the FileTypes.txt folder will wipe when the application is closed improperly. To fix this problem,
 renter file types (i.e. .docx, .pdf, etc.) into the file and it will run again.*
 
