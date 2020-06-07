@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-//#include "database.cpp"
+#include "database.cpp"
 #include "setup.cpp"
 using namespace std;
 
@@ -16,9 +16,14 @@ int main() {
   string iDir;
   string tempDir;
   vector<string> fileT;
+  map<string, int> files;
 
   parseDirectory(fin, fOut, tempDir, iDir);
+  fin.close();
   addFileType(fin, fOut, fileT);
+  databaseParser (fin, fOut, tempDir, fileT, files);
+  fin.close();
+
 
   return 0;
 }
