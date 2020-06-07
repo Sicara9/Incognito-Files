@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
@@ -134,7 +133,6 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   fOut_FT.close();
 }
-=======
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
@@ -270,4 +268,3 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   fOut_FT.close();
 }
->>>>>>> f3e7c2c50589c5a08766183f8d0d00ac727eb4e9
