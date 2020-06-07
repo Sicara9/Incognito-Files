@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <map>
 #include <vector>
 
@@ -25,7 +26,9 @@ void databaseParser (ifstream &fin_DB, ofstream &fOut_DB, string &tempDirectory,
         getline(fin_DB, parser);
         for (int i = 0; i < fileTypes.size(); i++) {
           if (parser.find(fileTypes[i])) {
+            parser.replace(parser.begin(), parser.begin()+1, "");
             files.insert(pair<string, int>(parser, 0));
+            break;
           }
         }
       }

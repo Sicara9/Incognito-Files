@@ -81,10 +81,6 @@ void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes
 
   fOut_FT.open("FileTypes.txt");
   for (auto i = fileTypes.begin(); i != fileTypes.end(); i++) {
-    cout << *i << "\n";
-  }
-cout << "hello" << endl;
-  for (auto i = fileTypes.begin(); i != fileTypes.end(); i++) {
     fOut_FT << *i << "\n";
   }
 
@@ -96,7 +92,7 @@ cout << "hello" << endl;
 
   cin >> tempFileType;
 
-  vector<string> fileSyn{".docx", ".pdf", ".ppt", ".png", ".gif"}; // Actually insert all file types here....
+  vector<string> fileSyn{".docx", ".pdf", ".ppt", ".png", ".gif", ".txt"}; // Actually insert all file types here....
   //int i = 0;
 
   while (tempFileType != "*") {

@@ -6,6 +6,8 @@
 
 #include "database.cpp"
 #include "setup.cpp"
+#include "hackathon.cpp"
+
 using namespace std;
 
 int main() {
@@ -23,6 +25,7 @@ int main() {
   addFileType(fin, fOut, fileT);
   databaseParser (fin, fOut, tempDir, fileT, files);
   fin.close();
+  fileManager (fOut, tempDir, files, fileT);
 
 
   return 0;

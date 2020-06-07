@@ -1,11 +1,14 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <map>
 #include <fstream>
 
+#include "setup.h"
+
 using namespace std;
 
-void fileManager(string &tempDirectory, map<string, int> &files, vector<string> &fileTypes)
+void fileManager(ofstream &fOut_FM, string &tempDirectory, map<string, int> &files, vector<string> &fileTypes)
 {
 
     // declare variables
@@ -19,10 +22,9 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
 
     // loop for Task Manager
 
-    ofstream file;
-    file.open ("TaskList.txt"); // NAME CAN CHANGE
-    file.close ();
-    
+    fOut_FM.open ("TaskList.txt"); // NAME CAN CHANGE
+    fOut_FM.close ();
+
     system("tasklist > TaskList.txt");
 
     //system("tasklist > C:\\Users\\benja\\OneDrive\\Documents\\Hackathon\\TaskList.txt");
@@ -33,10 +35,8 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
     string type[10];
     type[0] = "Nothing"; // PLACE HOLDER
     filename = "TaskList.txt";
-    ofstream file;
-    int i = 0;
-    file.open("Recent.txt");
-    file.close();
+    fOut_FM.open("Recent.txt");
+    fOut_FM.close();
     string name;
     vector<string> final;
     ifstream fin;
@@ -44,7 +44,7 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
     string deleteFileName;
     string mimic;
     string pathName;
-    
+
     while (!exit)
     {
         i = 0;
@@ -78,29 +78,31 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
 
                     fin.open ("Recent.txt");
 
-                    while (name.find(pathName) == string::npos) 
+                    while (name.find(pathName) == string::npos)
                     {
                         getline(fin, name);
                     }
 
-                    while (j < 7) 
+                    while (j < 7)
                     {
+
                         fin >> name;
                         fin >> name;
                         fin >> name;
-                        if ((name == "AM") || (name == "PM")) 
+                        if ((name == "AM") || (name == "PM"))
                         {
                             fin >> name;
-                            if (name != "<DIR>") 
+                            if (name != "<DIR>")
                             {
+                              getline(fin, name);
+                              name.replace(name.end()-4, name.end(), "");
+                              check = name.replace(name.begin(), name.begin()+1, "");
                                 map<string, int>::iterator i;
-                                for (i = files.begin(); i != files.end(); i++) 
+                                for (i = files.begin(); i != files.end(); i++)
                                 {
-                                    getline(fin, name);
-                                    name.replace(name.end()-4, name.end(), "");
-                                    check = name.replace(name.begin(), name.begin()+1, "");
                                     if (i->first == check)
                                     {
+                                      //cout << i->first << endl;
                                         deleteFileName = i->first;
                                         i->second = 1;
                                         break;
@@ -109,12 +111,12 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
                                 final.push_back(name);
                                 j++;
                             }
-                            else 
+                            else
                             {
                                 getline(fin, name);
                             }
                         }
-                        else 
+                        else
                         {
                             break;
                         }
@@ -124,13 +126,12 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
                     file_S >> word;
                     type[0] = word; // Save PID
                     i++;
-
                 }
                 else
                 {
                     ;
                 }
-        
+
             }
             file_S.close();
         }
@@ -142,9 +143,9 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
 
 
         //fOut_DB << i->first << '\t' << i->second << '\n';
-        
 
-        // cout << "Would you like to save or delete this file? (s/d) ";
+
+        // cout << "Would you like to save or delete this fOut_FM? (s/d) ";
         // cin >> save;
         // fileSkip = false;
         // if (save == 's' || save == 'S')
@@ -181,17 +182,17 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
                     {
                         ;
                     }
-        
+
                 }
                 file_S.close();
             }
 
-            // delete file
+            // delete fOut_FM
+cout << tempDirectory << "\\" << deleteFileName << endl;
+            system(("cd " + tempDirectory + " & del /f " + deleteFileName).c_str());
+            //system("del /f DELETE.txt"); INSERT THE DIRECTORY NAME AND fOut_FM NAME HERE TO DELETE ****************
 
-            system(("del /f" + deleteFileName).c_str());
-            //system("del /f DELETE.txt"); INSERT THE DIRECTORY NAME AND FILE NAME HERE TO DELETE ****************
 
-            
         //}
         //else
         //{
@@ -213,7 +214,7 @@ void fileManager(string &tempDirectory, map<string, int> &files, vector<string> 
 
     }
 
-    cout << "Thank you for using Incognito Files!";
+    cout << "Thank you for using Incognito Files!" << endl;
 
 
 }
