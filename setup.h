@@ -9,6 +9,6 @@ void fileManager (ofstream &fOut_FM, string &tempDirectory, map<string, int> &fi
 
 void parseDirectory (ifstream &fin_D, ofstream &fileOut, string &tempDirectory, string &input_directory);
 
-void createDirectory (ofstream &fOut_D, string &input_directory);
+void createDirectory (ofstream &fOut_D, string &tempDirectory, string &input_directory);
 
 void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes);

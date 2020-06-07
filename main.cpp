@@ -22,9 +22,13 @@ int main() {
 
   parseDirectory(fin, fOut, tempDir, iDir);
   fin.close();
+  fOut.close();
   addFileType(fin, fOut, fileT);
+  fin.close();
+  fOut.close();
   databaseParser (fin, fOut, tempDir, fileT, files);
   fin.close();
+  fOut.close();
   fileManager (fOut, tempDir, files, fileT);
 
 

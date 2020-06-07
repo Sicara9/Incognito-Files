@@ -24,37 +24,41 @@ void parseDirectory (ifstream &fin_D, ofstream &fileOut, string &tempDirectory, 
             system(("dir \"" + tempDirectory + "\" > database.txt").c_str());
           }
           else {
-            createDirectory (fileOut, input_directory);
+            createDirectory (fileOut, tempDirectory, input_directory);
           }
         }
         else {
           fin_D.close();
-          createDirectory (fileOut, input_directory);
+          createDirectory (fileOut, tempDirectory, input_directory);
         }
       }
       else {
         fin_D.close();
-        createDirectory (fileOut, input_directory);
+        createDirectory (fileOut, tempDirectory, input_directory);
       }
     }
     else {
-      createDirectory (fileOut, input_directory);
+      createDirectory (fileOut, tempDirectory, input_directory);
     }
   }
   else {
     fin_D.close();
-    createDirectory (fileOut, input_directory);
+    createDirectory (fileOut, tempDirectory, input_directory);
   }
 }
 
-void createDirectory (ofstream &fOut_D, string &input_directory) {
+void createDirectory (ofstream &fOut_D, string &tempDirectory, string &input_directory) {
   fOut_D.open("directory.txt");
   fOut_D << "File: " << endl;
   cout << "Input a directory path that you would like your files to be monitored for deletion: ";
   getline(cin, input_directory);
+  tempDirectory = input_directory; 
   fOut_D << input_directory;
   cout << endl << input_directory << endl;
   fOut_D.close();
+  fOut_D.open("database.txt");
+  fOut_D.close();
+  system(("dir \"" + tempDirectory + "\" > database.txt").c_str());
 }
 
 void addFileType (ifstream &fin_FT, ofstream &fOut_FT, vector<string> &fileTypes) {
