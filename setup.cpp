@@ -98,7 +98,6 @@ cout << "hello" << endl;
 
   vector<string> fileSyn{".docx", ".pdf", ".ppt", ".png", ".gif"}; // Actually insert all file types here....
   //int i = 0;
-  fileTypes.clear();
 
   while (tempFileType != "*") {
     if (tempFileType == "all") {
@@ -118,10 +117,10 @@ cout << "hello" << endl;
       cin >> tempFileType;
      }
     else if (tempFileType == "filetypes") {
-      if (fileTypes.begin() == fileTypes.end()) {
+      if (fileTypes.begin() != fileTypes.end()) {
         for (auto i = fileTypes.begin(); i != fileTypes.end(); i++) {
         cout << *i << endl;
-        }
+      }
         cin >> tempFileType;
       }
       else {
